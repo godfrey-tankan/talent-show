@@ -1,6 +1,7 @@
 
-
+from cryptography.fernet import Fernet
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,6 +17,8 @@ SECRET_KEY = 'django-insecure-i1($+40z8kd0%-e&i19h&jq(2)y3fishi%e$h=#08n$0lcxn#0
 DEBUG = True
 
 ALLOWED_HOSTS = []
+encryption_key = Fernet.generate_key()
+cipher_suite = Fernet(encryption_key)
 
 
 # Application definition
@@ -45,7 +48,7 @@ ROOT_URLCONF = 'talent.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'react-login-maste/public')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,6 +114,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_DIRS = [
+       os.path.join(BASE_DIR,'react-login-maste/public'),
+       os.path.join(BASE_DIR, 'static'),
+
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

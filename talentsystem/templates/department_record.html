@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="card">
+  <div class="card-header"><strong>
+    	{{department_record.department_name}}
+      {{department_record.department_name.id}}</strong>
+  </div>
+  <div class="card-body">
+
+
+
+
+<p class="card-text">
+<strong>Employee ID </strong>{{department_record.department_name}}
+</p>
+
+<p class="card-text">
+<strong>ID: </strong>{{ department_record.id }}</p> 
+  </div>
+</div>
+
+<br/><br/>
+    
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+{% if user.username == "admin" %}
+
+<a href="{% url 'delete_department' department_record.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'update_department' department_record.id %}" class="btn btn-secondary">Update Record</a>
+{% endif %}
+{% endblock %}

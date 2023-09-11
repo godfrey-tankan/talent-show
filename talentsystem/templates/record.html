@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="card">
+  <div class="card-header"><strong>
+    	{{company_record.company_name}}
+      {{company_record.company_reg_number}}</strong>
+  </div>
+  <div class="card-body">
+
+
+
+<p class="card-text">
+<strong>Company_Address: </strong>{{company_record.company_address}}</p>
+
+<p class="card-text">
+<strong>Company_Email: </strong>{{company_record.company_email}}
+</p>
+
+<p class="card-text">
+<strong>Contact_Person: </strong>{{company_record.contact_person}}</p>
+
+<p class="card-text">
+<strong>Departments: </strong>{{company_record.departments}}</p>
+
+<p class="card-text">
+<strong>Contact_Phone </strong>{{company_record.contact_phone}}</p>
+
+<p class="card-text">
+<strong>Number_Of_Employees: </strong>{{company_record.number_of_employees}}</p>
+
+
+<p class="card-text">
+<strong>ID: </strong>{{ company_record.id }}</p>
+
+
+    
+    
+  </div>
+</div>
+
+<br/><br/>
+    
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+{% if user.username == "admin" %}
+
+<a href="{% url 'delete_company' company_record.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'update_company' company_record.id %}" class="btn btn-secondary">Update Record</a>
+{% endif %}
+{% endblock %}
