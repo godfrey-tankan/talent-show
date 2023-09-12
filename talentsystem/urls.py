@@ -29,7 +29,7 @@ urlpatterns = [
 
 
 	path('company_details/', views.company_details, name='company_details'),
-
+	path('search/', views.search_results, name='search_results'),
 
 
 ]

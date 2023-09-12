@@ -1,45 +1,55 @@
 {% extends 'base.html' %}
 {% load encryption_tags %}
 
-
-
 {% block content %}
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'search_results' %}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="search_query" placeholder="Search...">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
 
-<table class="table table-striped table-hover table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">CompanyName</th>
-      <th scope="col">Comp_Reg_Num</th>
-      <th scope="col">comp_address</th>
-      <th scope="col">comp_email</th>
-      <th scope="col">contact_person</th>
-      <th scope="col">contact_phone</th>
-      <th scope="col">employees_No</th>
-      <th scope="col">Employee</th>
-      <th scope="col">department</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for company in companies %}
-    <tr>
-      <td>{{ company.company_name }}</td>
-      <td>{{ company.company_reg_number}}</td> 
-      <td>{{ company.company_address }}</td>
-      <td>{{ company.company_email }}</td>
-      <td>{{ company.contact_person }}</td>
-      <td>{{ company.contact_phone }}</td>
-      <td>{{ company.number_of_employees }}</td>
-      {% for department in company.departmentrecord_set.all %}
-        <td>
-          {% for employee in department.employeerecord_set.all %}
-            {{ employee.employee_name }} - {{ employee.role }}<br>  <!-- Encrypting employee role -->
-          {% endfor %}
-        </td>
-        <td>{{ department.department_name }}</td>
-      {% endfor %}
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-<br/><br/><br/>
+    <table class="table table-striped table-hover table-bordered">
+        <!-- Table Header -->
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">CompanyName</th>
+                <th scope="col">Comp_Reg_Num</th>
+                <th scope="col">comp_address</th>
+                <th scope="col">comp_email</th>
+                <th scope="col">contact_person</th>
+                <th scope="col">contact_phone</th>
+                <th scope="col">employees_No</th>
+                <th scope="col">Employee</th>
+                <th scope="col">department</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.company_reg_number }}</td>
+                <td>{{ company.company_address }}</td>
+                <td>{{ company.company_email }}</td>
+                <td>{{ company.contact_person }}</td>
+                <td>{{ company.contact_phone }}</td>
+                <td>{{ company.number_of_employees }}</td>
+                <td>
+                    {% for department in company.departmentrecord_set.all %}
+                    {% for employee in department.employeerecord_set.all %}
+                    {{ employee.employee_name }} - {{ employee.role }}<br>  <!-- Encrypting employee role -->
+                    {% endfor %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for department in company.departmentrecord_set.all %}
+                    {{ department.department_name }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br/><br/><br/>
 {% endblock %}

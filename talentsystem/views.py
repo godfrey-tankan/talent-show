@@ -15,6 +15,7 @@ from cryptography.fernet import Fernet
 
 
 
+
 # Create your views here.
 def home(request):
 	company_Records = CompanyRecord.objects.all()
@@ -263,7 +264,18 @@ def upload(request):
 
 
 
-
+# All the Necessary Company Details
 def company_details(request):
     companies = CompanyRecord.objects.all()
     return render(request, 'company_details.html', {'companies': companies})
+
+def search_results(request):
+    search_query = request.GET.get('search_query')
+    results = EmployeeRecord.objects.filter(
+        employee_name__icontains=search_query
+    )
+    context = {
+        'results': results,
+        'search_query': search_query,
+    }
+    return render(request, 'search_results.html', context)
