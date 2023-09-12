@@ -264,5 +264,6 @@ def upload(request):
 
 
 
-
-        
+def company_details(request):
+    companies = CompanyRecord.objects.all()
+    return render(request, 'company_details.html', {'companies': companies})

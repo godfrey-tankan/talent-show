@@ -28,7 +28,7 @@ urlpatterns = [
 	path('update_department/<int:pk>', views.update_department, name='update_department'),
 
 
-	# path('company_details/', views.company_details, name='company_details'),
+	path('company_details/', views.company_details, name='company_details'),
 
 
 

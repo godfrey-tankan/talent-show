@@ -2,4 +2,6 @@
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Upload</button>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+  
 </form>

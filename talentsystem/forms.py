@@ -61,7 +61,6 @@ class AddEmployeeRecord(forms.ModelForm):
 
 	employee_name = forms.CharField(required=True, widget =forms.widgets.TextInput(attrs={"placeholder":"| EMployee Name", "class":"form-control"}),label="")
 	employee_id = forms.CharField(required=True, widget =forms.widgets.TextInput(attrs={"placeholder":"| Employee ID Number", "class":"form-control"}),label="")
-	department = forms.CharField(required=True, widget =forms.widgets.TextInput(attrs={"placeholder":"| Employee Department", "class":"form-control"}),label="")
 	role = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"| Employee Role ", "class":"form-control"}),label="")
 	date_started = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"| Date Started In Role", "class":"form-control"}),label="")
 	date_left = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"| Date Left Role", "class":"form-control"}),label="")

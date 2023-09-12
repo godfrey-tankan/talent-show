@@ -22,7 +22,7 @@ class CompanyRecord(models.Model):
 # Department Details
 class DepartmentRecord(models.Model):
     department_name = models.CharField(max_length=100)
-    # company = models.ForeignKey(CompanyRecord, on_delete=models.CASCADE)
+    company = models.ForeignKey(CompanyRecord, on_delete=models.CASCADE)
 
     def __str__ (self):
     	return(f"{self.id }{self.department_name}")
@@ -32,7 +32,7 @@ class DepartmentRecord(models.Model):
 class EmployeeRecord(models.Model):
     employee_name = models.CharField(max_length=100)
     employee_id = models.CharField(max_length=50)
-    # department = models.ForeignKey(DepartmentRecord, on_delete=models.CASCADE)
+    department = models.ForeignKey(DepartmentRecord, on_delete=models.CASCADE)
     role = models.CharField(max_length=150)
     date_started = models.CharField(max_length=50)
     date_left = models.CharField(max_length=50)
