@@ -1,0 +1,168 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated%}
+<h1>Company Records</h1>
+
+<!-- Displaying Company records  -->
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">comp_name</th>
+      <th scope="col">comp_reg</th>
+      <th scope="col">comp_address</th>
+      <th scope="col">comp_email</th>
+      <th scope="col">contact_person</th>
+      <th scope="col">departments</th>
+      <th scope="col">contact_phone</th>
+      <th scope="col">employees_No</th>
+      <th scope="col">Date</th>
+      <th scope="col">file</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    
+{% if company_Records %}
+  {% for company_Record in company_Records %}
+  <!-- iterating through company records to return each individual field -->
+    <tr>
+      <td><a href="{% url 'record' company_Record.id %}"> {{ company_Record.id }}</a></td>
+      <td>{{ company_Record.company_name }} </td>
+      <td>{{ company_Record.company_reg_number }}</td>
+      <td>{{ company_Record.company_address }}</td>
+      <td>{{ company_Record.company_email }}</td>
+      <td>{{ company_Record.contact_person }}</td>
+      <td>{{ company_Record.departments }}</td>
+      <td>{{ company_Record.contact_phone }}</td>
+      <td>{{ company_Record.number_of_employees }}</td>
+      <td>{{ company_Record.created_at }}</td>
+      <td>{{ company_Record.bulk }}</td>
+     
+    </tr>
+
+      <br/>
+
+  {% endfor %}
+{% endif %}
+
+
+    </tbody>
+  </table>
+  <br/><br/><br/>
+  <!-- Showing Company Departments -->
+
+
+<h1>Company Departments</h1>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Department_ID</th>
+      <th scope="col">Department_Name</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+{% if department_Records %}
+
+<!-- iterating through records of the department -->
+
+  {% for department_Record in department_Records %}
+    <tr>
+    
+      <td><a href="{% url 'department_record' department_Record.id %}"> {{ department_Record.id }}</a></td>
+      <td>{{department_Record.department_name}}</td>
+     
+    </tr>
+
+      <br/>
+
+  {% endfor %}
+{% endif %}
+
+
+ </tbody>
+  </table>
+  <br/><br/><br/>
+
+
+
+<h1>Employee Records</h1>
+
+<!-- Displaying Employee records   -->
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">employee_id</th>
+      <th scope="col">employee_name</th>
+      <th scope="col">department</th>
+      <th scope="col">role</th>
+      <th scope="col">date_started</th>
+      <th scope="col">date_left</th>
+      <th scope="col">dutie</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+
+{% if employee_Records %}
+
+<!-- Looping through all records in Employee-record model -->
+
+  {% for employee_Record in employee_Records %}
+    <tr>
+
+      <td><a href="{% url 'employee_record' employee_Record.id %}"> {{ employee_Record.id }}</a></td>
+
+      <td> {{employee_Record.employee_name}}</td>
+      <td> {{employee_Record.department}}</td>
+      <td> {{employee_Record.role}}</td>
+      <td>{{employee_Record.date_started}}</td>
+      <td>{{employee_Record.date_left}}</td>
+      <td> {{employee_Record.dutie}}</td>
+     
+    </tr>
+
+      <br/>
+
+  {% endfor %}
+
+{% endif %}
+
+    </tbody>
+  </table>
+  <br/><br/><br/>
+  <br/><br/><br/>
+
+
+
+
+{% else %}
+<div class="col-md-6 offset-md-3">
+
+<h1>login</h1>
+
+<form method="POST" action="{%url 'home' %}">
+	{% csrf_token %}
+
+	<div class="mb-3">
+    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    
+  </div><br/>
+  <div class="mb-3">
+    <input type="password" class="form-control" name="password", placeholder="Password" required>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-secondary">Login</button>
+	
+</form>
+</div>
+
+{% endif %}
+
+{% endblock %}

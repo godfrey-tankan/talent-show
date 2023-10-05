@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="card">
+  <div class="card-header"><strong>
+    	{{employee_record.employee_name}}
+      {{employee_record.employee.id}}</strong>
+  </div>
+  <div class="card-body">
+
+
+
+
+<p class="card-text">
+<strong>Employee ID </strong>{{employee_record.employee_id}}
+</p>
+
+<p class="card-text">
+<strong>Department: </strong>{{employee_record.department}}</p>
+
+<p class="card-text">
+<strong>Role: </strong>{{employee_record.role}}</p>
+
+<p class="card-text">
+<strong>Date Started </strong>{{employee_record.date_started}}</p>
+
+<p class="card-text">
+<strong>Date Left: </strong>{{employee_record.date_left}}</p>
+
+<p class="card-text">
+<strong>Duty: </strong>{{employee_record.dutie}}</p>
+
+<p class="card-text">
+<strong>ID: </strong>{{ employee_record.id }}</p> 
+  </div>
+</div>
+
+<br/><br/>
+    
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+{% if user.username == "admin" %}
+
+<a href="{% url 'delete_employee' employee_record.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'update_employee' employee_record.id %}" class="btn btn-secondary">Update Record</a>
+{% endif %}
+{% endblock %}
