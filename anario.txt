@@ -1,4 +1,3 @@
-Based on the scenario you provided for the talent verification service, here's a suggested breakdown of the tables you may need to create in the database:
 
 Company Table:
 company_id (Primary Key)
