@@ -18,7 +18,7 @@ class CompanyRecord(models.Model):
         return f"{self.company_name}{self.company_reg_number}"
 
 
-# Department Details
+# Department Details table
 class DepartmentRecord(models.Model):
     department_name = models.CharField(max_length=100)
     company = models.ForeignKey(CompanyRecord, on_delete=models.SET_NULL, null=True)
